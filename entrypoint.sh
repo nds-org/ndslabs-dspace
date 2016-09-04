@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-TIMEOUT=30
+TIMEOUT=60
 
 POSTGRES_DB_HOST=${POSTGRES_DB_HOST:-$POSTGRES_PORT_5432_TCP_ADDR}
 POSTGRES_DB_PORT=${POSTGRES_DB_PORT:-$POSTGRES_PORT_5432_TCP_PORT}
-POSTGRES_DB_PORT=${POSTGRES_DB_PORT:-5432}
 POSTGRES_USER=${POSTGRES_USER:-dspace}
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-dspace}
 POSTGRES_SCHEMA=${POSTGRES_SCHEMA:-dspace}
@@ -26,8 +25,9 @@ while true; do
 	   break
     else
        if [ "$i" -lt "$TIMEOUT" ]; then 
-		 i=$((i+1))
-	     sleep 1
+         echo Waiting for postgres;
+		 i=$((i+5))
+	     sleep 5
        else 
          echo Required service Postgres not running. Have you started the required services?
          exit 1
@@ -35,8 +35,6 @@ while true; do
     fi
 done
 
-# Create DSpace administrator
-dspace create-administrator -e ${ADMIN_EMAIL:-devops@1science.com} -f ${ADMIN_FIRSTNAME:-DSpace} -l ${ADMIN_LASTNAME:-Admin} -p ${ADMIN_PASSWD:-admin123} -c ${ADMIN_LANGUAGE:-en}
+dspace create-administrator -e ${ADMIN_EMAIL} -f DSpace -l Admin -p ${ADMIN_PASSWD} -c en
 
-# Start Tomcat
 exec catalina.sh run
