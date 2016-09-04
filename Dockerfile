@@ -11,7 +11,7 @@ ENV PATH=$CATALINA_HOME/bin:$DSPACE_HOME/bin:$PATH
 WORKDIR /tmp
 
 # Install runtime and dependencies
-RUN apt-get update && apt-get install -y vim ant netcat postgresql-client \
+RUN apt-get update && apt-get install -y vim ant nmap postgresql-client \
     && mkdir -p maven dspace "$CATALINA_HOME" \
     && curl -fSL http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz -o tomcat.tar.gz \
     && curl -fSL http://apache.mirror.iweb.ca/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -o maven.tar.gz \
