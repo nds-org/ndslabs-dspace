@@ -28,6 +28,7 @@ else
    ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null 
    echo $?	
    echo Required service Postgres not running. Have you started the required services?
+   sleep 360
    exit 1
 fi
 
