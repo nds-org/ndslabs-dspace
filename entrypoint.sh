@@ -19,18 +19,21 @@ echo "Dspace configuration changed"
 
 
 echo "Connecting to Postgres on $POSTGRES_DB_HOST $POSTGRES_DB_PORT"
-echo "ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT"
-if ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null > /dev/null 2>&1 ; then
-   echo Postgres running;
-else
-
-   echo "ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null "
-   ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null 
-   echo $?	
-   echo Required service Postgres not running. Have you started the required services?
-   sleep 360
-   exit 1
-fi
+i=0
+while true; do
+    if ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT --send-only < /dev/null > /dev/null 2>&1 ; then
+       echo Postgres running;
+	   break
+    else
+       if [ "$i" -lt "$TIMEOUT" ]; then 
+		 i=$((i+1))
+	     sleep 1
+       else 
+         echo Required service Postgres not running. Have you started the required services?
+         exit 1
+	   fi
+    fi
+done
 
 # Create DSpace administrator
 dspace create-administrator -e ${ADMIN_EMAIL:-devops@1science.com} -f ${ADMIN_FIRSTNAME:-DSpace} -l ${ADMIN_LASTNAME:-Admin} -p ${ADMIN_PASSWD:-admin123} -c ${ADMIN_LANGUAGE:-en}
