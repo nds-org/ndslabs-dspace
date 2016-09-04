@@ -19,9 +19,14 @@ echo "Dspace configuration changed"
 
 
 echo "Connecting to Postgres on $POSTGRES_DB_HOST $POSTGRES_DB_PORT"
+echo "ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT"
 if ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null > /dev/null 2>&1 ; then
    echo Postgres running;
 else
+
+   echo "ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null "
+   ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null 
+   echo $?	
    echo Required service Postgres not running. Have you started the required services?
    exit 1
 fi
