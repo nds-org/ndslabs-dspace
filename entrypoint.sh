@@ -17,6 +17,8 @@ sed -i "s#db.username = dspace#db.username = ${POSTGRES_USER}#" ${DSPACE_CFG}
 sed -i "s#db.password = dspace#db.password = ${POSTGRES_PASSWORD}#" ${DSPACE_CFG}
 echo "Dspace configuration changed"
 
+
+echo "Connecting to Postgres on $POSTGRES_DB_HOST $POSTGRES_DB_PORT"
 if ncat $POSTGRES_DB_HOST $POSTGRES_DB_PORT -w $TIMEOUT --send-only < /dev/null > /dev/null 2>&1 ; then
    echo Postgres running;
 else
