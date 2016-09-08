@@ -1,8 +1,8 @@
 # DSpace 5.4
 
-Resources to create a Docker image for use in [NDS Labs](https://github.com/nds-org/ndslabs).
+Resources to create the Dspace Docker image for use in [NDS Labs](https://github.com/nds-org/ndslabs).
 
-This is a preliminary containerization of [DSpace](http://www.dspace.org/)integration for use with the NDS Labs system and assumes a  PostgreSQL database. This image is referenced by the [NDS Labs Service Catalog](https://github.com/nds-org/ndslabs-specs).
+This is a preliminary containerization of [DSpace](http://www.dspace.org/) for use with the NDS Labs system and assumes a PostgreSQL database. This image is referenced in the [NDS Labs Service Catalog](https://github.com/nds-org/ndslabs-specs).
 
 A few notes:
 * Default user interface is XMLUI
