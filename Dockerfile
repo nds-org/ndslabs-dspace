@@ -13,7 +13,7 @@ WORKDIR /tmp
 # Install runtime and dependencies
 RUN apt-get update && apt-get install -y vim ant nmap postgresql-client \
     && mkdir -p maven dspace "$CATALINA_HOME" \
-    && curl -fSL http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz -o tomcat.tar.gz \
+    && curl -fSL http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.0.41/bin/apache-tomcat-8.0.41.tar.gz -o tomcat.tar.gz \
     && curl -fSL http://apache.mirror.iweb.ca/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -o maven.tar.gz \
     && curl -L https://github.com/DSpace/DSpace/releases/download/dspace-5.4/dspace-5.4-release.tar.gz -o dspace.tar.gz \
     && tar -xvf tomcat.tar.gz --strip-components=1 -C "$CATALINA_HOME" \
