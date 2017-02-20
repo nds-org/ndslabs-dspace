@@ -2,7 +2,7 @@
 # DSpace image
 #
 
-FROM java:openjdk-7u95
+FROM openjdk:7u95
 
 # Environment variables
 ENV CATALINA_HOME=/usr/local/tomcat DSPACE_HOME=/dspace
