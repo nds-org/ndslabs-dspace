@@ -32,7 +32,7 @@ RUN mkdir -p dspace "$CATALINA_HOME" \
     && rm -fr "$CATALINA_HOME/webapps" && mv -f /dspace/webapps "$CATALINA_HOME" \
     && mv $CATALINA_HOME/webapps/xmlui $CATALINA_HOME/webapps/ROOT \
     && sed -i s/CONFIDENTIAL/NONE/ /usr/local/tomcat/webapps/rest/WEB-INF/web.xml \
-    && rm -fr ~/.m2 && rm -fr /tmp/* && apt-get remove -y ant
+    && rm -fr /tmp/* && apt-get remove -y ant
 
 # Install root filesystem
 ADD entrypoint.sh /
