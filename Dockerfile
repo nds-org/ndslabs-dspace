@@ -5,7 +5,7 @@
 FROM maven:3.3.9-jdk-7
 
 # Build Arguments
-ARG TOMCAT_VERSION="8.0.42"
+ARG TOMCAT_VERSION="8.0.43"
 ARG DSPACE_VERSION="5.4"
 
 # Environment variables
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y vim ant nmap postgresql-client \
     && rm -rf /var/cache/apk/* /tmp/* /var/lib/apt/lists/*
 
 RUN mkdir -p dspace "$CATALINA_HOME" \
-    && curl -fSL http://apache.mirrors.tds.net/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat.tar.gz \
+    && curl -fSL https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat.tar.gz \
     && curl -L https://github.com/DSpace/DSpace/releases/download/dspace-${DSPACE_VERSION}/dspace-${DSPACE_VERSION}-release.tar.gz -o dspace.tar.gz \
     && tar -xvf tomcat.tar.gz --strip-components=1 -C "$CATALINA_HOME" \
     && tar -xvf dspace.tar.gz --strip-components=1  -C dspace \
